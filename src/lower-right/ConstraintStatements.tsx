@@ -198,7 +198,7 @@ export default function ConstraintStatements(props: ConstraintStatementProps & {
                 dispatch({
                     _tag: ActionTypeTag.UPDATE_CONSTRAINT,
                     index: index,
-                    constraint: { cType, nums, n: value ? Number(nums) : null },
+                    constraint: { cType, nums, n: value ? Number(value) : null },
                 });
                 setNumError(!value);
             };
