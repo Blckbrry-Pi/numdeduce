@@ -1,0 +1,111 @@
+.guess-header-container {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+
+    background-color: white;
+
+
+    display: flex;
+    align-items: center;
+
+
+    padding: .5vw;
+    padding-top: 1vw;
+    
+    border-bottom: 3px solid darkslategray;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    
+    margin-bottom: .5vw;
+
+
+    font-size: 5vw;
+    font-weight: 600;
+}
+
+.guess-data-header { 
+    font-size: 1.6vw;
+    width: 7vw;
+    font-weight: bold;
+    padding: 0 1.5vw;
+}
+.guess-data-header:nth-last-child(2) {
+    margin-left: auto;
+    border-left: none;
+}
+
+.guess-data-header:not(:nth-last-child(2)) {
+    border-left: lightslategray solid 0.3vw;
+}
+
+.guess-container {
+    padding: .5vw;
+    border-bottom: 3px solid slategray;
+    border-radius: 3px;
+    margin-bottom: .5vw;
+    display: flex;
+    align-items: center;
+}
+.guess-container:last-child {
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    border-bottom: none;
+}
+
+.guess-cell {
+    display: inline-block;
+    width: 2ch;
+    padding: 8px;
+    border-radius: 12px;
+    font-size: 4.5vw;
+    text-align: center;
+    margin-right: 1vw;
+    border: 2px solid darkgray;
+    text-transform: uppercase;
+}
+
+.guess-cell:nth-last-child(1) {
+    background-color: #ffe0ee;
+}
+
+.guess-cell:nth-last-child(2) {
+    background-color: #ffeedd;
+}
+
+.guess-cell:nth-last-child(3) {
+    background-color: #ffffdd;
+}
+
+.guess-cell:nth-last-child(4) {
+    background-color: #eeffee;
+}
+
+.guess-cell:nth-last-child(5) {
+    background-color: #ddeeff;
+}
+
+.guess-cell:nth-last-child(6) {
+    background-color: #eeddff;
+}
+
+
+.guess-cell:nth-last-child(3n + 4) {
+    margin-right: 2.5vw;
+}
+
+
+.returned-guess-data { 
+    font-size: 7vw;
+    width: 7vw;
+    font-weight: bolder;
+    padding: 0 1.5vw;
+}
+.returned-guess-data:nth-last-child(2) {
+    margin-left: auto;
+    border-left: none;
+}
+
+.returned-guess-data:not(:nth-last-child(2)) {
+    border-left: lightslategray solid 0.3vw;
+}

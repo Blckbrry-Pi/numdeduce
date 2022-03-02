@@ -1,0 +1,147 @@
+.constraint-chart {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+}
+.constraint-chart-row {
+    margin: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-grow: 1;
+}
+
+
+.constraint-chart-cell {
+    display: flex;
+    position: relative;
+    font-size: 1.3vmin;
+    line-height: 1.3vmin;
+    font-weight: 400;
+    border: 0.3vmin solid transparent;
+}
+.constraint-chart-cell.inner {
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    width: 1.8vmin;
+    aspect-ratio: 1/1;
+}
+
+.constraint-chart-cell:not(.inner) {
+    padding: 0vmin 0.5vmin 0vmin 0.5vmin;
+    align-self: stretch;
+    border-left-width: 0.5vmin;
+    border-bottom: 0px;
+}
+
+.constraint-chart-cell.header {
+    font-size: 1.8vmin;
+    font-weight: 800;
+}
+
+.constraint-chart-cell.deactivated {
+    color: #00000055;
+}
+
+.constraint-chart-cell.definite {
+    border-color: #00a700;
+}
+
+.constraint-chart-cross {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    color: red;
+    width: 2.5vmin;
+    height: 2.5vmin;
+    font-size: 0;
+}
+
+.constraint-chart-cell.blue-group {
+    border-top-color: blue;
+    border-left-color: blue;
+
+    background-image: linear-gradient(blue 33%, rgba(0,0,255,0) 0%);
+    background-position: right top;
+    background-size: 0.3vmin 200%;
+    background-repeat: repeat-y;
+}
+.constraint-chart-cell.blue-left:not(.blue-group) {
+    border-left-color: blue;
+    border-top: 0px;
+}
+
+.constraint-chart-cell.orange-group {
+    border-top-color: orange;
+    border-left-color: orange;
+
+    background-image: linear-gradient(orange 33%, rgba(0,0,255,0) 0%);
+    background-position: right top;
+    background-size: 0.3vmin 200%;
+    background-repeat: repeat-y;
+}
+.constraint-chart-cell.orange-left:not(.orange-group) {
+    border-left-color: orange;
+    border-top: 0px;
+}
+
+.constraint-chart-cell.green-group {
+    border-top-color: green;
+    border-left-color: green;
+
+    background-image: linear-gradient(green 33%, rgba(0,0,255,0) 0%);
+    background-position: right top;
+    background-size: 0.3vmin 200%;
+    background-repeat: repeat-y;
+}
+.constraint-chart-cell.green-left:not(.green-group) {
+    border-left-color: green;
+    border-top: 0px;
+}
+
+.constraint-chart-cell.red-group {
+    border-top-color: red;
+    border-left-color: red;
+
+    background-image: linear-gradient(red 33%, rgba(0,0,255,0) 0%);
+    background-position: right top;
+    background-size: 0.3vmin 200%;
+    background-repeat: repeat-y;
+}
+.constraint-chart-cell.red-left:not(.red-group) {
+    border-left-color: red;
+    border-top: 0px;
+}
+
+.constraint-chart-cell.purple-group {
+    border-top-color: purple;
+    border-left-color: purple;
+
+    background-image: linear-gradient(purple 33%, rgba(0,0,255,0) 0%);
+    background-position: right top;
+    background-size: 0.3vmin 200%;
+    background-repeat: repeat-y;
+}
+.constraint-chart-cell.purple-left:not(.purple-group) {
+    border-left-color: purple;
+    border-top: 0px;
+}
+
+.constraint-chart-cell.yellow-group {
+    border-top-color: yellow;
+    border-left-color: yellow;
+
+    background-image: linear-gradient(yellow 33%, rgba(0,0,255,0) 0%);
+    background-position: right top;
+    background-size: 0.3vmin 200%;
+    background-repeat: repeat-y;
+}
+.constraint-chart-cell.yellow-left:not(.yellow-group) {
+    border-left-color: yellow;
+    border-top: 0px;
+}

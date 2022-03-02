@@ -1,0 +1,72 @@
+.constraint-statement {
+    border: 1px solid #aaa;
+    border-radius: 12px;
+
+    font-size: 1.3vmax;
+
+    padding: 5px;
+
+    margin: 10px;
+
+    display: flex;
+    align-items: center;
+    
+}
+
+.constraint-statement-content {
+    margin: auto;
+}
+
+.constraint-digit-container {
+    display: inline-block;
+    font-size: inherit;
+}
+
+.constraint-dropdown-menu.root-node {
+    width: 12vmax;
+    display: inline-flex;
+    flex-direction: column;
+
+}
+.constraint-dropdown-menu.root-node .react-selectize-control {
+    flex-grow: 1;
+}
+.dropdown-menu.material.react-selectize.simple-select.constraint-dropdown-menu {
+    margin-top: 2.4vmax;
+}
+
+.constraint-digit-input {
+    display: inline-block;
+    width: 2ch;
+    padding: 4px;
+    border-radius: 8px;
+    font-size: inherit;
+    text-align: center;
+
+    border: 1px solid darkgray;
+    transition: border 0.5s;
+}
+
+.constraint-digit-input-error {
+    border: 2px solid red;
+}
+
+.constraint-statement-remove-icon {
+    color: rgb(184, 0, 0);
+    width: 1.75vmax;
+    height: 1.75vmax;
+    font-size: 0;
+    
+}
+
+
+.demo-constraint-statement {
+    border: 1px solid #aaa;
+    padding: 10px;
+    font-size: 1.3vmax;
+    color: #000000aa;
+}
+
+.demo-constraint-statement code {
+    color: #00000066;
+}
