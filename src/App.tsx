@@ -26,8 +26,6 @@ function App() {
 
     useEffect(() => stateAction({ _tag: ActionTypeTag.SET_DIGITS, numDigits: 4 }), []);
 
-    console.log(state.getAnswer?.());
-
     const { prevGuesses: guesses, digits, constraints } = state;
 
     const constraintError = (value: string): void => {
