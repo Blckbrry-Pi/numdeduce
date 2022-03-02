@@ -10,6 +10,7 @@
     "@types/node": "^16.11.21",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
+    "gh-pages": "^3.2.3",
     "react": "^17.0.2",
     "react-aria-menubutton": "^7.0.3",
     "react-dom": "^17.0.2",
@@ -25,7 +26,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -47,5 +51,6 @@
   },
   "devDependencies": {
     "@types/react-aria-menubutton": "^6.2.9"
-  }
+  },
+  "homepage": "https://blckbry-pi.github.io/numdeduce"
 }
