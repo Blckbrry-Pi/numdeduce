@@ -1,5 +1,9 @@
 import { ConstraintParams, ConstraintType } from "./constraints";
 
+function getPlaceIndex(place: number, digits: number) {
+    return digits - Math.round(Math.log10(place)) - 1;
+}
+
 export function fitsConstraint(guess: string, constraint: ConstraintParams): boolean {
     const guessDigits = guess.split("").map(Number);
 
@@ -11,7 +15,7 @@ export function fitsConstraint(guess: string, constraint: ConstraintParams): boo
         case ConstraintType.HAS_NUMBER_IN_PLACE:
             return constraint.num !== null
                 && constraint.place !== null
-                && guessDigits[guessDigits.length - Math.round(Math.log10(constraint.place)) - 1] === constraint.num;
+                && guessDigits[getPlaceIndex(constraint.place, guessDigits.length)] === constraint.num;
 
         case ConstraintType.CANT_BE_NUMBER:
             return constraint.num !== null
@@ -20,7 +24,7 @@ export function fitsConstraint(guess: string, constraint: ConstraintParams): boo
         case ConstraintType.CANT_BE_NUMBER_IN_PLACE:
             return constraint.num !== null
                 && constraint.place !== null
-                && guessDigits[guessDigits.length - Math.round(Math.log10(constraint.place)) - 1] !== constraint.num;
+                && guessDigits[getPlaceIndex(constraint.place, guessDigits.length)] !== constraint.num;
         
         case ConstraintType.N_OF_NUMS_LIST_IN_NUMBER: {
             const booleansMatched = constraint.nums.map(digit => guessDigits.includes(digit));
