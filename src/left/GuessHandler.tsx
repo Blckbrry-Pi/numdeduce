@@ -23,9 +23,11 @@ export default function GuessHandler({ dispatch, onSubmitAttempt, digits, guessD
         {guessData.map((singleGuess, index) => <DoneGuess
             key={index}
             digits={digits}
+            guessIdx={index}
             {...singleGuess}
         /> )}
         <div className="guess-container">
+            <span className="guess-number">{guessData.length + 1}</span>
             <AuthCode
                 characters={digits}
                 allowedCharacters={/\d/}

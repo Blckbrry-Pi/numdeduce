@@ -3,11 +3,13 @@ import AuthCode from "./AuthCode";
 
 export interface DoneGuessProps extends Guess {
     digits: number;
+    guessIdx: number;
 }
 
 
-export default function DoneGuess({ digits, guess, numCor, numPla }: DoneGuessProps) {
+export default function DoneGuess({ digits, guess, numCor, numPla, guessIdx }: DoneGuessProps) {
     return <div className="guess-container">
+            <span className="guess-number">{guessIdx + 1}</span>
             <AuthCode
                 characters={digits}
                 allowedCharacters={/\d/}

@@ -26,7 +26,7 @@
 
 .guess-data-header { 
     font-size: 1.6vw;
-    width: 7vw;
+    width: 5vw;
     font-weight: bold;
     padding: 0 1.5vw;
 }
@@ -51,6 +51,14 @@
     padding-top: 1vw;
     padding-bottom: 1vw;
     border-bottom: none;
+}
+
+.guess-number {
+    font-size: 2vw;
+    width: 3vw;
+    font-weight: bolder;
+    border-right: lightslategray solid 0.3vw;
+    margin-right: 2vmin;
 }
 
 .guess-cell {
@@ -97,7 +105,7 @@
 
 .returned-guess-data { 
     font-size: 7vw;
-    width: 7vw;
+    width: 5vw;
     font-weight: bolder;
     padding: 0 1.5vw;
 }
