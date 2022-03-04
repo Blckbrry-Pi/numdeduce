@@ -20,7 +20,7 @@ export default function CantHaveNumber( { className, constraint, dispatch, index
     const { cType } = constraint;
 
     const onNumChangeClosure = (value: string) => {
-        const newNumList = value.split("").map(Number).filter(Boolean);
+        const newNumList = value.split("").map(Number).filter(n => !Number.isNaN(n));
         dispatch({
             _tag: ActionTypeTag.UPDATE_CONSTRAINT,
             index: index,
