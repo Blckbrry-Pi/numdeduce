@@ -9,8 +9,7 @@ export function fitsConstraint(guess: string, constraint: ConstraintParams): boo
 
     switch (constraint.cType) {
         case ConstraintType.HAS_NUMBER:
-            return constraint.num !== null
-                && guessDigits.includes(constraint.num);
+            return constraint.nums.every(num => guessDigits.includes(num));
         
         case ConstraintType.HAS_NUMBER_IN_PLACE:
             return constraint.num !== null
@@ -18,8 +17,7 @@ export function fitsConstraint(guess: string, constraint: ConstraintParams): boo
                 && guessDigits[getPlaceIndex(constraint.place, guessDigits.length)] === constraint.num;
 
         case ConstraintType.CANT_BE_NUMBER:
-            return constraint.num !== null
-                && !guessDigits.includes(constraint.num);
+            return !constraint.nums.some(num => guessDigits.includes(num));
 
         case ConstraintType.CANT_BE_NUMBER_IN_PLACE:
             return constraint.num !== null

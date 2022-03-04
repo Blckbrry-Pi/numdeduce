@@ -9,6 +9,9 @@ import { ConstraintParams, ConstraintType, NONLINConstraint } from '../libs/cons
 import "./ConstraintStatement.css";
 import TrashIcon from '../trashIcon.svg';
 import { ActionType, ActionTypeTag } from "../stateManagement";
+import HasNumber from "./constraint-statement-types/HasNumber";
+import CantHaveNumber from "./constraint-statement-types/CantHaveNumber";
+import HasNumberInPlace from "./constraint-statement-types/HasNumberInPlace";
 
 export type ConstraintStatementProps = ConstraintParams & { index: number, dispatch: React.Dispatch<ActionType | ActionType[]> };
 
@@ -32,113 +35,34 @@ export default function ConstraintStatements(props: ConstraintStatementProps & {
     const deleteConstraint = () => dispatch({ _tag: ActionTypeTag.DELETE_CONSTRAINT, index });
 
     switch (props.cType) {
-        case HAS_NUMBER: {
-            const onNumChangeClosure = (value: string) => {
-                const { cType } = props;
-                if (value) {
-                    dispatch({
-                        _tag: ActionTypeTag.UPDATE_CONSTRAINT,
-                        index: index,
-                        constraint: { cType, num: Number(value) },
-                    });
-                    setNumError(false);
-                } else {
-                    dispatch({
-                        _tag: ActionTypeTag.UPDATE_CONSTRAINT,
-                        index: index,
-                        constraint: { cType, num: null },
-                    });
-                    setNumError(true);
-                }
-            };
-
-            return <div className={`constraint-statement ${props.className}`}>
-                <div className="constraint-statement-content">The number has a <AuthCode
-                    characters={1}
-                    allowedCharacters={/\d/}
-                    onChange={onNumChangeClosure}
-                    containerClassName="constraint-digit-container"
-                    inputClassName={`constraint-digit-input ${numError ? "constraint-digit-input-error" : ""}`}
-                    inputType="tel"
-                /> in it.</div>
-                <ReactSVG src={TrashIcon} className="constraint-statement-remove-icon" onClick={deleteConstraint}/>
-            </div>;
-        }
+        case HAS_NUMBER:
+            return <HasNumber
+                className={props.className}
+                constraint={props}
+                digits={props.digits}
+                dispatch={dispatch}
+                index={index}
+            />;
             
 
-        case HAS_NUMBER_IN_PLACE: {
-            const onNumChangeClosure = (value: string) => {
-                const { cType, place } = props;
-                if (value) {
-                    dispatch({
-                        _tag: ActionTypeTag.UPDATE_CONSTRAINT,
-                        index: index,
-                        constraint: { cType, place, num: Number(value) },
-                    });
-                    setNumError(false);
-                } else {
-                    dispatch({
-                        _tag: ActionTypeTag.UPDATE_CONSTRAINT,
-                        index: index,
-                        constraint: { cType, place, num: null },
-                    });
-                    setNumError(true);
-                }
-            };
+        case HAS_NUMBER_IN_PLACE:
+            return <HasNumberInPlace
+                className={props.className}
+                constraint={props}
+                digits={props.digits}
+                dispatch={dispatch}
+                index={index}
+                options={options}
+            />;
 
-            const onPlaceChangeClosure = (value: OptionValue) => {
-                if (!options.some(option => value && option.label === value.label && option.value === value.value)) return;
-                const { cType, num } = props;
-                dispatch({
-                    _tag: ActionTypeTag.UPDATE_CONSTRAINT,
-                    index: index,
-                    constraint: { cType, num, place: value.value },
-                });
-            };
-
-            return <div className={`constraint-statement ${props.className}`}>
-                <div className="constraint-statement-content">The number has a <AuthCode
-                    characters={1}
-                    allowedCharacters={/\d/}
-                    onChange={onNumChangeClosure}
-                    containerClassName="constraint-digit-container"
-                    inputClassName={`constraint-digit-input ${numError ? "constraint-digit-input-error" : ""}`}
-                    inputType="tel"
-                /> in the {<SimpleSelect
-                    className="constraint-dropdown-menu"
-                    options = {options}
-                    theme = "material"
-                    onValueChange={onPlaceChangeClosure}
-                    defaultValue={{label: "place", value: props.place}}
-                    transitionEnter = {true}
-                />}.</div>
-                <ReactSVG src={TrashIcon} className="constraint-statement-remove-icon" onClick={deleteConstraint}/>
-            </div>;
-        }
-
-        case CANT_BE_NUMBER: {
-            const onNumChangeClosure = (value: string) => {
-                const { cType } = props;
-                dispatch({
-                    _tag: ActionTypeTag.UPDATE_CONSTRAINT,
-                    index: index,
-                    constraint: { cType, num: value ? Number(value) : null },
-                });
-                setNumError(!value);
-            };
-
-            return <div className={`constraint-statement ${props.className}`}>
-                <div className="constraint-statement-content">The number can't have a <AuthCode
-                    characters={1}
-                    allowedCharacters={/\d/}
-                    onChange={onNumChangeClosure}
-                    containerClassName="constraint-digit-container"
-                    inputClassName={`constraint-digit-input ${numError ? "constraint-digit-input-error" : ""}`}
-                    inputType="tel"
-                /> anywhere in it.</div>
-                <ReactSVG src={TrashIcon} className="constraint-statement-remove-icon" onClick={deleteConstraint}/>
-            </div>;
-        }
+        case CANT_BE_NUMBER:
+            return <CantHaveNumber
+                className={props.className}
+                constraint={props}
+                digits={props.digits}
+                dispatch={dispatch}
+                index={index}
+            />;
 
         case CANT_BE_NUMBER_IN_PLACE: {
             const onNumChangeClosure = (value: string) => {
@@ -269,7 +193,7 @@ export function newConstraintOfType(constraintType: ConstraintType): ConstraintP
         case HAS_NUMBER:
             return {
                 cType: HAS_NUMBER,
-                num: null,
+                nums: [],
             }
         
         case HAS_NUMBER_IN_PLACE:
@@ -282,7 +206,7 @@ export function newConstraintOfType(constraintType: ConstraintType): ConstraintP
         case CANT_BE_NUMBER:
             return {
                 cType: CANT_BE_NUMBER,
-                num: null,
+                nums: [],
             }
 
         case CANT_BE_NUMBER_IN_PLACE:
@@ -321,7 +245,7 @@ export function NewConstraintStatementDemo({ cType }: { cType: ConstraintType } 
     switch (cType) {
         case HAS_NUMBER:
             return <MenuItem value={cType}>
-                <div className="demo-constraint-statement">The number has a <code>&lt;digit&gt;</code>.</div>
+                <div className="demo-constraint-statement">The number has the digits <code>&lt;digit list&gt;</code> in it.</div>
             </MenuItem>;
 
         case HAS_NUMBER_IN_PLACE:
@@ -331,7 +255,7 @@ export function NewConstraintStatementDemo({ cType }: { cType: ConstraintType } 
 
         case CANT_BE_NUMBER:
             return <MenuItem value={cType}>
-                <div className="demo-constraint-statement">The number can't have a <code>&lt;digit&gt;</code> anywhere in it.</div>
+                <div className="demo-constraint-statement">The number can't have the digits <code>&lt;digit list&gt;</code> anywhere in it.</div>
             </MenuItem>;
 
         case CANT_BE_NUMBER_IN_PLACE:
@@ -348,8 +272,5 @@ export function NewConstraintStatementDemo({ cType }: { cType: ConstraintType } 
             return <MenuItem value={cType}>
                 <div className="demo-constraint-statement">The number has <code>&lt;number&gt;</code> of the digits <code>&lt;digit list&gt;</code> in the <code>&lt;place&gt;</code>.</div>
             </MenuItem>;
-
-        default:
-            return <></>
     }
 }

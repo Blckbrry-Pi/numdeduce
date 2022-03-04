@@ -19,7 +19,7 @@ export function digitDeactivated(digit: number, constraints: (ConstraintParams |
         
         switch (constraint.cType) {
             case CANT_BE_NUMBER:
-                if (constraint.num === digit) return true;
+                if (constraint.nums.includes(digit)) return true;
                 break;
 
             case CANT_BE_NUMBER_IN_PLACE:
@@ -45,11 +45,11 @@ export function digitDefinite(digit: number, constraints: (ConstraintParams | nu
         
         switch (constraint.cType) {
             case HAS_NUMBER:
-                if (constraint.num === digit) return true;
+                if (constraint.nums.includes(digit)) return true;
                 break;
 
             case CANT_BE_NUMBER:
-                if (constraint.num === digit) return false;
+                if (constraint.nums.includes(digit)) return false;
                 break;
 
             default:
@@ -78,7 +78,7 @@ export function placeValueDeactivated(digit: number, placeValue: number, constra
                 break;
 
             case CANT_BE_NUMBER:
-                if (constraint.num === digit) return true;
+                if (constraint.nums.includes(digit)) return true;
                 break;
 
             case CANT_BE_NUMBER_IN_PLACE:
@@ -111,7 +111,7 @@ export function placeValueDefinite(digit: number, placeValue: number, constraint
 
             
             case CANT_BE_NUMBER:
-                if (constraint.num === digit) return false;
+                if (constraint.nums.includes(digit)) return false;
                 break;
             
             case CANT_BE_NUMBER_IN_PLACE:

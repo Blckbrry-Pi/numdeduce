@@ -9,7 +9,7 @@ export enum ConstraintType {
 
 export type HNConstraint = {
     cType: ConstraintType.HAS_NUMBER;
-    num: number | null;
+    nums: number[];
 };
 export type HNIPConstraint = {
     cType: ConstraintType.HAS_NUMBER_IN_PLACE;
@@ -18,7 +18,7 @@ export type HNIPConstraint = {
 };
 export type CBNConstraint = {
     cType: ConstraintType.CANT_BE_NUMBER;
-    num: number | null;
+    nums: number[];
 };
 export type CBNIPConstraint = {
     cType: ConstraintType.CANT_BE_NUMBER_IN_PLACE;
