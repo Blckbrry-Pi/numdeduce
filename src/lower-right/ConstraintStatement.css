@@ -70,3 +70,13 @@
 .demo-constraint-statement code {
     color: #00000066;
 }
+
+.negative {
+    color: rgb(184, 0, 0);
+    font-weight: bolder;
+}
+
+.positive {
+    color: rgb(0, 140, 0);
+    font-weight: bolder;
+}

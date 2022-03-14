@@ -19,7 +19,7 @@ export default function HasNumber( { className, constraint, digits, dispatch, in
 
     const { cType } = constraint;
 
-    const onNumChangeClosure = (value: string) => {
+    const onNumsChangeClosure = (value: string) => {
         const newNumList = value.split("").map(Number).filter(n => !Number.isNaN(n));
         dispatch({
             _tag: ActionTypeTag.UPDATE_CONSTRAINT,
@@ -32,14 +32,14 @@ export default function HasNumber( { className, constraint, digits, dispatch, in
     const deleteConstraint = useCallback(() => dispatch({ _tag: ActionTypeTag.DELETE_CONSTRAINT, index }), [dispatch, index] );
 
     return <div className={`constraint-statement ${className}`}>
-        <div className="constraint-statement-content">The number has the digits <AuthCode
+        <div className="constraint-statement-content"><span className="positive">YES!</span> <AuthCode
             characters={Math.min(digitCount + 1, digits)}
             allowedCharacters={/\d/}
-            onChange={onNumChangeClosure}
+            onChange={onNumsChangeClosure}
             containerClassName="constraint-digit-container"
             inputClassName="constraint-digit-input"
             inputType="tel"
-        /> in it.</div>
+        /></div>
         <ReactSVG src={TrashIcon} className="constraint-statement-remove-icon" onClick={deleteConstraint}/>
     </div>;
 }

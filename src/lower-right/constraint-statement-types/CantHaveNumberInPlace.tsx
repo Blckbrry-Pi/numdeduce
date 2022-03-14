@@ -3,20 +3,20 @@ import { OptionValue, SimpleSelect } from "react-selectize";
 import { ReactSVG } from "react-svg";
 
 import AuthCode from "../../left/AuthCode";
-import { HNIPConstraint } from "../../libs/constraints";
+import { CBNIPConstraint } from "../../libs/constraints";
 import { ActionTypeTag, ActionType } from "../../stateManagement";
 import TrashIcon from '../../trashIcon.svg';
 
 interface HasNumberInPlaceProps {
     className: string;
-    constraint: HNIPConstraint;
+    constraint: CBNIPConstraint;
     digits: number;
     dispatch: React.Dispatch<ActionType | ActionType[]>;
     index: number;
     options: OptionValue[];
 }
 
-export default function HasNumberInPlace( { className, constraint, dispatch, index, options }: HasNumberInPlaceProps ) {
+export default function CantHaveNumberInPlace( { className, constraint, dispatch, index, options }: HasNumberInPlaceProps ) {
     const [numError, setNumError] = useState<boolean>(false);
 
     const deleteConstraint = useCallback(() => dispatch({ _tag: ActionTypeTag.DELETE_CONSTRAINT, index }), [dispatch, index] );
@@ -51,7 +51,7 @@ export default function HasNumberInPlace( { className, constraint, dispatch, ind
     };
 
     return <div className={`constraint-statement ${className}`}>
-        <div className="constraint-statement-content"><span className="positive">YES!</span> <AuthCode
+        <div className="constraint-statement-content"><span className="negative">NO!</span> <AuthCode
             characters={1}
             allowedCharacters={/\d/}
             onChange={onNumChangeClosure}
