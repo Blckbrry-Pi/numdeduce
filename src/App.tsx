@@ -5,7 +5,7 @@ import './App.css';
 import Phrases from './lower-right/Phrases';
 
 import ConstraintChart from './top-right/ConstraintChart';
-import dispatch, { ActionTypeTag } from './stateManagement';
+import dispatch, { ActionType, ActionTypeTag } from './stateManagement';
 import { ReactNotifications } from 'react-notifications-component';
 import 'react-notifications-component/dist/scss/notification.scss';
 import checkIfValid, { fitsConstraints, HardValidationFailure } from './libs/validation';
@@ -13,7 +13,47 @@ import { Store } from "react-notifications-component";
 import { ConfirmConstraintOverride, HardError } from "./Notifications";
 import GuessHandler from './left/GuessHandler';
 
+const constraintError = (value: string, stateAction: React.Dispatch<ActionType | ActionType[]>): void => {
+    const idObj = {
+        id: "",
+    };
 
+    Store.removeAllNotifications();
+    idObj.id = Store.addNotification({
+        title: "Guess does not fit constraints!",
+        message: <ConfirmConstraintOverride callback={() => {
+            const idObjSelf = idObj;
+            Store.removeNotification(idObjSelf.id);
+            stateAction({ _tag: ActionTypeTag.ADD_GUESS, guess: value });
+        }} />,
+
+        type: "warning",
+        container: "bottom-right",
+
+        dismiss: {
+            duration: 3000,
+            pauseOnHover: true,
+            showIcon: true,
+        }
+    });
+};
+
+const hardError = (reason: HardValidationFailure): void => {
+    Store.removeAllNotifications();
+    Store.addNotification({
+        title: "Guess is not valid!",
+        message: <HardError reason={reason} />,
+
+        type: "danger",
+        container: "bottom-right",
+
+        dismiss: {
+            duration: 3000,
+            pauseOnHover: true,
+            showIcon: true,
+        }
+    });
+};
 
 
 function App() {
@@ -28,51 +68,14 @@ function App() {
 
     const { prevGuesses: guesses, digits, constraints } = state;
 
-    const constraintError = (value: string): void => {
-        const idObj = {
-            id: "",
-        };
-
-        Store.removeAllNotifications();
-        idObj.id = Store.addNotification({
-            title: "Guess does not fit constraints!",
-            message: <ConfirmConstraintOverride callback={() => {
-                const idObjSelf = idObj;
-                Store.removeNotification(idObjSelf.id);
-                stateAction({ _tag: ActionTypeTag.ADD_GUESS, guess: value });
-            }} />,
-
-            type: "warning",
-            container: "bottom-right",
-
-            dismiss: {
-                duration: 3000,
-                pauseOnHover: true,
-                showIcon: true,
-            }
-        });
-    };
-    const hardError = (reason: HardValidationFailure): void => {
-        Store.removeAllNotifications();
-        Store.addNotification({
-            title: "Guess is not valid!",
-            message: <HardError reason={reason} />,
-
-            type: "danger",
-            container: "bottom-right",
-
-            dismiss: {
-                duration: 3000,
-                pauseOnHover: true,
-                showIcon: true,
-            }
-        });
-    };
-
-    const onSubmitAttempt = (guess: string) => {
+    const onSubmitAttempt = (guessAny: any) => {
+        const guess = typeof guessAny === "string" ? guessAny : state.currGuess;
+        
         const hardValid = checkIfValid(guess, guesses.map(g => g.guess), digits);
         if (hardValid !== null) hardError(hardValid);
-        else if (!fitsConstraints(guess, constraints)) constraintError(guess);
+
+        else if (!fitsConstraints(guess, constraints)) constraintError(guess, stateAction);
+        
         else stateAction({ _tag: ActionTypeTag.ADD_GUESS, guess });
     };
 

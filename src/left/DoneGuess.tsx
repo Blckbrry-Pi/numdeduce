@@ -1,5 +1,5 @@
 import { Guess } from "../stateManagement";
-import AuthCode from "./AuthCode";
+import AuthCode from "../libs/AuthCode";
 
 export interface DoneGuessProps extends Guess {
     digits: number;

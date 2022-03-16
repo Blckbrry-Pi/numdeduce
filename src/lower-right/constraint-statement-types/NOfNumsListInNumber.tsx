@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { ReactSVG } from "react-svg";
 
 
-import AuthCode from "../../left/AuthCode";
+import AuthCode from "../../libs/AuthCode";
 import { NONLINConstraint } from "../../libs/constraints";
 import { ActionType, ActionTypeTag } from "../../stateManagement";
 import TrashIcon from '../../trashIcon.svg';

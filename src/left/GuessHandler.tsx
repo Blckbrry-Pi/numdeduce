@@ -1,12 +1,12 @@
 import { ActionType, ActionTypeTag, Guess } from "../stateManagement";
-import AuthCode from "./AuthCode";
+import AuthCode from "../libs/AuthCode";
 import DoneGuess from "./DoneGuess";
 
 import "./GuessHandler.css";
 
 export interface GuessHandlerProps {
     dispatch: React.Dispatch<ActionType | ActionType[]>;
-    onSubmitAttempt: (value: string) => void;
+    onSubmitAttempt: (value: string | null) => void;
     digits: number;
     guessData: Guess[];
 }
@@ -14,7 +14,6 @@ export interface GuessHandlerProps {
 export default function GuessHandler({ dispatch, onSubmitAttempt, digits, guessData }: GuessHandlerProps) {
 
     return <>
-
         <div className="guess-header-container">
             <span className="guess-number-container"> Guess</span>
             <span className="guess-data-header"># correct</span>
@@ -38,8 +37,7 @@ export default function GuessHandler({ dispatch, onSubmitAttempt, digits, guessD
                 inputType="tel"
                 key={-guessData.length - 1}
             />
-            <span className="returned-guess-data">?</span>
-            <span className="returned-guess-data">?</span>
+            <button onClick={() => onSubmitAttempt(null)}>Submit</button>
         </div>
         
     </>

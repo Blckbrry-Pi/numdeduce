@@ -1,0 +1,76 @@
+.place-slider-parent-flex-container {
+    margin: 0vmin 1.5vmin;
+
+    vertical-align: -0.5vmax;
+
+    display: inline-flex;
+    align-items: center;
+
+    position: relative;
+    left: 0px;
+
+}
+
+.place-slider-dash {
+    min-width: 2vmax;
+    border: 1px solid black;
+}
+
+.place-slider-big-tick {
+    height: 1.8vmax;
+    border: 1px solid black;
+}
+
+.place-slider-little-tick {
+    height: 1vmax;
+    border: 1px solid black;
+}
+
+.slider-handle {
+    width: 1.5vmax;
+    height: 1.5vmax;
+    box-sizing: border-box;
+
+    border-radius: 10%;
+    border: 2px solid #aaaaaa66;
+    
+    position: absolute;
+    transform: translateX(calc(50% - 1px));
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: right 0.1s, background-color 0.1s;
+}
+
+
+.slider-handle.value-1 {
+    background-color: #ffe0ee;
+    right: calc(0 * (2vmax + 4px));
+}
+
+.slider-handle.value-10 {
+    background-color: #ffeedd;
+    right: calc(1 * (2vmax + 4px));
+}
+
+.slider-handle.value-100 {
+    background-color: #ffffdd;
+    right: calc(2 * (2vmax + 4px));
+}
+
+.slider-handle.value-1000 {
+    background-color: #eeffee;
+    right: calc(3 * (2vmax + 4px));
+}
+
+.slider-handle.value-10000 {
+    background-color: #ddeeff;
+    right: calc(4 * (2vmax + 4px));
+}
+
+.slider-handle.value-100000 {
+    background-color: #eeddff;
+    right: calc(5 * (2vmax + 2px));
+}

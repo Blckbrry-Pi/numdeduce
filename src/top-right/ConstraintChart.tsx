@@ -7,7 +7,7 @@ import WrapperDivs from '../libs/WrapperDivs';
 
 const colors = ["blue", "orange", "green", "red", "purple", "yellow"];
 
-const placeValueMapping = {
+export const placeValueMapping = {
     "1": "O",
     "10": "T",
     "100": "H",

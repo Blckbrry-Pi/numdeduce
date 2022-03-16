@@ -22,7 +22,6 @@ export default function ConstraintStatements(props: ConstraintStatementProps & {
         N_OF_NUMS_LIST_IN_PLACES,
     } = ConstraintType;
 
-    const options = Array(props.digits).fill(null).map((_, index) => ({label: `${10 ** index}s place`, value: 10 ** index}));
 
     const { index, dispatch } = props;
 
@@ -44,7 +43,6 @@ export default function ConstraintStatements(props: ConstraintStatementProps & {
                 digits={props.digits}
                 dispatch={dispatch}
                 index={index}
-                options={options}
             />;
 
         case CANT_BE_NUMBER:
@@ -63,7 +61,6 @@ export default function ConstraintStatements(props: ConstraintStatementProps & {
                 digits={props.digits}
                 dispatch={dispatch}
                 index={index}
-                options={options}
             />
 
         case N_OF_NUMS_LIST_IN_NUMBER:
@@ -104,7 +101,7 @@ export function newConstraintOfType(constraintType: ConstraintType): ConstraintP
             return {
                 cType: HAS_NUMBER_IN_PLACE,
                 num: null,
-                place: null,
+                place: 1,
             }
         
         case CANT_BE_NUMBER:
@@ -117,7 +114,7 @@ export function newConstraintOfType(constraintType: ConstraintType): ConstraintP
             return {
                 cType: CANT_BE_NUMBER_IN_PLACE,
                 num: null,
-                place: null,
+                place: 1,
             }
 
         case N_OF_NUMS_LIST_IN_NUMBER:
@@ -173,8 +170,9 @@ export function NewConstraintStatementDemo({ cType }: { cType: ConstraintType } 
             </MenuItem>;
 
         case N_OF_NUMS_LIST_IN_PLACES:
-            return <MenuItem value={cType}>
-                <div className="demo-constraint-statement">The number has <code>&lt;number&gt;</code> of the digits <code>&lt;digit list&gt;</code> in the <code>&lt;place&gt;</code>.</div>
-            </MenuItem>;
+            return <></>;
+            // return <MenuItem value={cType}>
+            //     <div className="demo-constraint-statement">The number has <code>&lt;number&gt;</code> of the digits <code>&lt;digit list&gt;</code> in the <code>&lt;place&gt;</code>.</div>
+            // </MenuItem>;
     }
 }
