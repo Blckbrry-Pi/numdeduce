@@ -78,7 +78,6 @@ const PlaceSlider: React.FC<Props> = ({
                 }
                 
                 const newPlaceValue = 10 ** lowestSeenIndex;
-                console.log(newPlaceValue);
     
                 if (newPlaceValue !== placeValue) setPlaceValue(newPlaceValue);
             }

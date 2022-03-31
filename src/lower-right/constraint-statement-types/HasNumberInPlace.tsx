@@ -46,7 +46,6 @@ export default function HasNumberInPlace( { className, constraint, dispatch, ind
             index: index,
             constraint: { cType, num, place: value },
         });
-        console.log(num);
     };
 
     return <div className={`constraint-statement ${className}`}>
