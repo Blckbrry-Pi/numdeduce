@@ -47,7 +47,7 @@ export default function NOfNumsListInNumber({ className, constraint, dispatch, i
 
     //new RegExp(`[1-${value}]`);
     return <div className={`constraint-statement ${className}`}>
-        <div className="constraint-statement-content"><span className="positive">YES!</span> <AuthCode
+        <div className="constraint-statement-content"><span className="some">SOME!</span> <AuthCode
             characters={1}
             allowedCharacters={new RegExp(`[0-${digitCount}]`)}
             onChange={onNChangeClosure}

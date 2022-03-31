@@ -11,7 +11,7 @@ export function digitDeactivated(digit: number, constraints: (ConstraintParams |
     const remainingPlaces = new Set(places);
     const {
         CANT_BE_NUMBER,
-        CANT_BE_NUMBER_IN_PLACE,
+        CANT_BE_NUMBERS_IN_PLACE,
     } = ConstraintType;
 
     for (const constraint of constraints) {
@@ -22,8 +22,8 @@ export function digitDeactivated(digit: number, constraints: (ConstraintParams |
                 if (constraint.nums.includes(digit)) return true;
                 break;
 
-            case CANT_BE_NUMBER_IN_PLACE:
-                if (constraint.num === digit) remainingPlaces.delete(constraint.place || 0);
+            case CANT_BE_NUMBERS_IN_PLACE:
+                if (constraint.nums.includes(digit)) remainingPlaces.delete(constraint.place || 0);
                 if (remainingPlaces.size === 0) return true;
                 break;
 
@@ -65,7 +65,7 @@ export function placeValueDeactivated(digit: number, placeValue: number, constra
     const {
         HAS_NUMBER_IN_PLACE,
         CANT_BE_NUMBER,
-        CANT_BE_NUMBER_IN_PLACE,
+        CANT_BE_NUMBERS_IN_PLACE,
     } = ConstraintType;
 
     for (const constraint of constraints) {
@@ -81,8 +81,8 @@ export function placeValueDeactivated(digit: number, placeValue: number, constra
                 if (constraint.nums.includes(digit)) return true;
                 break;
 
-            case CANT_BE_NUMBER_IN_PLACE:
-                if (constraint.place === placeValue && constraint.num === digit) return true;
+            case CANT_BE_NUMBERS_IN_PLACE:
+                if (constraint.place === placeValue && constraint.nums.includes(digit)) return true;
                 break;
 
             default:
@@ -97,7 +97,7 @@ export function placeValueDefinite(digit: number, placeValue: number, constraint
     const {
         HAS_NUMBER_IN_PLACE,
         CANT_BE_NUMBER,
-        CANT_BE_NUMBER_IN_PLACE,
+        CANT_BE_NUMBERS_IN_PLACE,
     } = ConstraintType;
 
     for (const constraint of constraints) {
@@ -114,8 +114,8 @@ export function placeValueDefinite(digit: number, placeValue: number, constraint
                 if (constraint.nums.includes(digit)) return false;
                 break;
             
-            case CANT_BE_NUMBER_IN_PLACE:
-                if (constraint.num === digit && constraint.place === placeValue) return false;
+            case CANT_BE_NUMBERS_IN_PLACE:
+                if (constraint.nums.includes(digit) && constraint.place === placeValue) return false;
                 break;
 
             default:

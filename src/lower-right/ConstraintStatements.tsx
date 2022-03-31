@@ -17,7 +17,7 @@ export default function ConstraintStatements(props: ConstraintStatementProps & {
         HAS_NUMBER,
         HAS_NUMBER_IN_PLACE,
         CANT_BE_NUMBER,
-        CANT_BE_NUMBER_IN_PLACE,
+        CANT_BE_NUMBERS_IN_PLACE,
         N_OF_NUMS_LIST_IN_NUMBER,
         N_OF_NUMS_LIST_IN_PLACES,
     } = ConstraintType;
@@ -54,7 +54,7 @@ export default function ConstraintStatements(props: ConstraintStatementProps & {
                 index={index}
             />;
 
-        case CANT_BE_NUMBER_IN_PLACE: 
+        case CANT_BE_NUMBERS_IN_PLACE: 
             return <CantHaveNumberInPlace
                 className={props.className}
                 constraint={props}
@@ -86,7 +86,7 @@ export function newConstraintOfType(constraintType: ConstraintType): ConstraintP
         HAS_NUMBER,
         HAS_NUMBER_IN_PLACE,
         CANT_BE_NUMBER,
-        CANT_BE_NUMBER_IN_PLACE,
+        CANT_BE_NUMBERS_IN_PLACE,
         N_OF_NUMS_LIST_IN_NUMBER,
         N_OF_NUMS_LIST_IN_PLACES,
     } = ConstraintType;
@@ -110,10 +110,10 @@ export function newConstraintOfType(constraintType: ConstraintType): ConstraintP
                 nums: [],
             }
 
-        case CANT_BE_NUMBER_IN_PLACE:
+        case CANT_BE_NUMBERS_IN_PLACE:
             return {
-                cType: CANT_BE_NUMBER_IN_PLACE,
-                num: null,
+                cType: CANT_BE_NUMBERS_IN_PLACE,
+                nums: [],
                 place: 1,
             }
 
@@ -139,7 +139,7 @@ export function NewConstraintStatementDemo({ cType }: { cType: ConstraintType } 
         HAS_NUMBER,
         HAS_NUMBER_IN_PLACE,
         CANT_BE_NUMBER,
-        CANT_BE_NUMBER_IN_PLACE,
+        CANT_BE_NUMBERS_IN_PLACE,
         N_OF_NUMS_LIST_IN_NUMBER,
         N_OF_NUMS_LIST_IN_PLACES,
     } = ConstraintType;
@@ -159,14 +159,14 @@ export function NewConstraintStatementDemo({ cType }: { cType: ConstraintType } 
                 <div className="demo-constraint-statement"><span className="negative">NO!</span> <code>&lt;digit list&gt;</code></div>
             </MenuItem>;
 
-        case CANT_BE_NUMBER_IN_PLACE:
+        case CANT_BE_NUMBERS_IN_PLACE:
             return <MenuItem value={cType}>
                 <div className="demo-constraint-statement"><span className="negative">NO!</span> <code>&lt;digit&gt;</code> in <code>&lt;place&gt;</code></div>
             </MenuItem>;
 
         case N_OF_NUMS_LIST_IN_NUMBER:
             return <MenuItem value={cType}>
-                <div className="demo-constraint-statement"><span className="positive">YES!</span> <code>&lt;number&gt;</code> of <code>&lt;digit list&gt;</code></div>
+                <div className="demo-constraint-statement"><span className="some">SOME!</span> <code>&lt;number&gt;</code> of <code>&lt;digit list&gt;</code></div>
             </MenuItem>;
 
         case N_OF_NUMS_LIST_IN_PLACES:

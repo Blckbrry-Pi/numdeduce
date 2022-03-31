@@ -19,10 +19,9 @@ export function fitsConstraint(guess: string, constraint: ConstraintParams): boo
         case ConstraintType.CANT_BE_NUMBER:
             return !constraint.nums.some(num => guessDigits.includes(num));
 
-        case ConstraintType.CANT_BE_NUMBER_IN_PLACE:
-            return constraint.num !== null
-                && constraint.place !== null
-                && guessDigits[getPlaceIndex(constraint.place, guessDigits.length)] !== constraint.num;
+        case ConstraintType.CANT_BE_NUMBERS_IN_PLACE:
+            return constraint.place !== null
+                && !constraint.nums.includes(guessDigits[getPlaceIndex(constraint.place, guessDigits.length)]);
         
         case ConstraintType.N_OF_NUMS_LIST_IN_NUMBER: {
             const booleansMatched = constraint.nums.map(digit => guessDigits.includes(digit));
@@ -50,7 +49,7 @@ export default function checkIfValid(guess: string, prevGuesses: string[], digit
 
     if (new Set(guess.split("")).size !== digits) return "digitRepeat";
 
-    if (prevGuesses.includes(guess)) return "guessRepeat";
+    // if (prevGuesses.includes(guess)) return "guessRepeat";
 
     return null;
     // return fitsConstraints(guess, constraints.flatMap(posConstraint => posConstraint ?? []));

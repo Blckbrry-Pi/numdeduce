@@ -16,48 +16,37 @@ interface HasNumberInPlaceProps {
 }
 
 export default function CantHaveNumberInPlace( { className, constraint, digits, dispatch, index }: HasNumberInPlaceProps ) {
-    const [numError, setNumError] = useState<boolean>(false);
+    const [ digitCount, setDigitCount ] = useState<number>(0);
 
-    const deleteConstraint = useCallback(() => dispatch({ _tag: ActionTypeTag.DELETE_CONSTRAINT, index }), [dispatch, index] );
+    const { cType, nums, place } = constraint;
 
-    const { cType, num, place } = constraint;
-
-    const onNumChangeClosure = (value: string) => {
-        if (value) {
-            dispatch({
-                _tag: ActionTypeTag.UPDATE_CONSTRAINT,
-                index: index,
-                constraint: { cType, place, num: Number(value) },
-            });
-            setNumError(false);
-        } else {
-            dispatch({
-                _tag: ActionTypeTag.UPDATE_CONSTRAINT,
-                index: index,
-                constraint: { cType, place, num: null },
-            });
-            setNumError(true);
-        }
+    const onNumsChangeClosure = (value: string) => {
+        const newNumList = value.split("").map(Number).filter(n => !Number.isNaN(n));
+        dispatch({
+            _tag: ActionTypeTag.UPDATE_CONSTRAINT,
+            index: index,
+            constraint: { cType, place, nums: newNumList },
+        });
+        setDigitCount(newNumList.length);
     };
 
     const onPlaceChangeClosure = (value: number) => {
         dispatch({
             _tag: ActionTypeTag.UPDATE_CONSTRAINT,
             index: index,
-            constraint: { cType, num, place: value },
+            constraint: { cType, nums, place: value },
         });
-        console.log(num);
     };
 
-    console.log("rerendered");
+    const deleteConstraint = useCallback(() => dispatch({ _tag: ActionTypeTag.DELETE_CONSTRAINT, index }), [dispatch, index] );
 
     return <div className={`constraint-statement ${className}`}>
         <div className="constraint-statement-content"><span className="negative">NO!</span> <AuthCode
-            characters={1}
+            characters={Math.min(digitCount + 1, 10)}
             allowedCharacters={/\d/}
-            onChange={onNumChangeClosure}
+            onChange={onNumsChangeClosure}
             containerClassName="constraint-digit-container"
-            inputClassName={`constraint-digit-input ${numError ? "constraint-digit-input-error" : ""}`}
+            inputClassName="constraint-digit-input"
             inputType="tel"
         /> in <PlaceSlider
             placeValue={place}
