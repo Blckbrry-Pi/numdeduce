@@ -26,7 +26,7 @@
 
 .guess-data-header { 
     font-size: 1.6vw;
-    width: 5vw;
+    width: 4vw;
     font-weight: bold;
     padding: 0 1.5vw;
 }
@@ -57,7 +57,7 @@
     font-size: 2vw;
     width: 3vw;
     font-weight: bolder;
-    margin-right: 2vmin;
+    margin-right: 1vmin;
 }
 
 .guess-cell {
@@ -98,13 +98,13 @@
 
 
 .guess-cell:nth-last-child(3n + 4) {
-    margin-right: 2.5vw;
+    margin-right: 2vw;
 }
 
 
 .returned-guess-data { 
-    font-size: 7vw;
-    width: 5vw;
+    font-size: 6vw;
+    width: 4vw;
     font-weight: bolder;
     padding: 0 1.5vw;
 }

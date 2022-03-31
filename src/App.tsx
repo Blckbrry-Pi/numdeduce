@@ -12,6 +12,7 @@ import checkIfValid, { fitsConstraints, HardValidationFailure } from './libs/val
 import { Store } from "react-notifications-component";
 import { ConfirmConstraintOverride, HardError } from "./Notifications";
 import GuessHandler from './left/GuessHandler';
+import SettingsPanel from './settings-panel/SettingsPanel';
 
 const constraintError = (value: string, stateAction: React.Dispatch<ActionType | ActionType[]>): void => {
     const idObj = {
@@ -58,13 +59,14 @@ const hardError = (reason: HardValidationFailure): void => {
 
 function App() {
     const [state, stateAction] = useReducer(dispatch, {
-        digits: 4,
+        digits: 2,
+        settingsOpen: true,
         currGuess: "",
         prevGuesses: [],
         constraints: [],
     });
 
-    useEffect(() => stateAction({ _tag: ActionTypeTag.SET_DIGITS, numDigits: 4 }), []);
+    useEffect(() => stateAction({ _tag: ActionTypeTag.SET_DIGITS, numDigits: 2 }), []);
 
     const { prevGuesses: guesses, digits, constraints } = state;
 
@@ -95,6 +97,7 @@ function App() {
             </div>
             
             <ReactNotifications />
+            <SettingsPanel state={state} dispatch={stateAction} />
         </div>
     );
 }

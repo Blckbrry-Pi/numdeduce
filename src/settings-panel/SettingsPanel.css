@@ -1,0 +1,10 @@
+input {
+    display: inline-block;
+    width: 2ch;
+    padding: 4px;
+    border-radius: 8px;
+    font-size: inherit;
+    text-align: center;
+
+    border: 1px solid darkgray;
+}

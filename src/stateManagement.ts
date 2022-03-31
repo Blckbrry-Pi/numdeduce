@@ -20,6 +20,7 @@ export interface Guess {
 
 export interface AppState {
     digits: number;
+    settingsOpen: boolean;
 
     currGuess: string;
     prevGuesses: Guess[];
@@ -36,6 +37,7 @@ export interface AppState {
 export namespace ActionTypes {
     export enum ActionTypeTag {
         SET_DIGITS,
+        SET_SETTINGS_OPEN,
         
         SET_CURR_GUESS,
         ADD_GUESS,
@@ -51,6 +53,10 @@ export namespace ActionTypes {
     export interface SetDigitsAction {
         _tag: ActionTypeTag.SET_DIGITS;
         numDigits: number;
+    }
+    export interface SetSettingsOpenAction {
+        _tag: ActionTypeTag.SET_SETTINGS_OPEN;
+        open: boolean;
     }
 
 
@@ -91,6 +97,7 @@ export namespace ActionTypes {
 export const ActionTypeTag = ActionTypes.ActionTypeTag;
 
 export type ActionType = ActionTypes.SetDigitsAction
+                | ActionTypes.SetSettingsOpenAction
                 | ActionTypes.SetCurrGuessAction
                 | ActionTypes.AddGuessAction
                 | ActionTypes.AddConstraintAction
@@ -103,6 +110,7 @@ function singleDispatch(oldState: AppState, action: ActionType): AppState {
 
     const {
         SET_DIGITS,
+        SET_SETTINGS_OPEN,
         SET_CURR_GUESS,
         ADD_GUESS,
         ADD_CONSTRAINT,
@@ -118,6 +126,12 @@ function singleDispatch(oldState: AppState, action: ActionType): AppState {
                 ...oldState,
                 digits: action.numDigits,
                 getAnswer: ((value) => () => value)(generateNumber(action.numDigits))
+            };
+        
+        case SET_SETTINGS_OPEN:
+            return {
+                ...oldState,
+                settingsOpen: action.open,
             };
         
         case SET_CURR_GUESS:
