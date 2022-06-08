@@ -30,11 +30,14 @@ export default function CantHaveNumberInPlace( { className, constraint, digits, 
         setDigitCount(newNumList.length);
     };
 
-    const onPlaceChangeClosure = (value: number) => {
+    const onPlaceChangeClosure = (update: number | ((old: number) => number)) => {
+        if (update instanceof Function) {
+            update = update(place);
+        }
         dispatch({
             _tag: ActionTypeTag.UPDATE_CONSTRAINT,
             index: index,
-            constraint: { cType, nums, place: value },
+            constraint: { cType, nums, place: update },
         });
     };
 

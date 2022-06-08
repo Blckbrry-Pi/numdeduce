@@ -34,7 +34,7 @@ export default function GuessHandler({ dispatch, onSubmitAttempt, digits, guessD
                 onSubmit={onSubmitAttempt}
                 containerClassName='guess-number-container'
                 inputClassName={`guess-cell`}
-
+                inputType="tel"
                 key={-guessData.length - 1}
             />
             <button onClick={() => onSubmitAttempt(null)}>Submit</button>

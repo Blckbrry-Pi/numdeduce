@@ -7,7 +7,7 @@ type Props = {
     digits: number;
     className?: string;
     placeValue: number;
-    setPlaceValue: (pv: number) => void;
+    setPlaceValue: (pv: number | ((old: number) => number)) => void;
 };
 
 const Tickmarks: React.FC<{ digits: number }> = ({ digits }) => {
@@ -79,16 +79,18 @@ const PlaceSlider: React.FC<Props> = ({
                 
                 const newPlaceValue = 10 ** lowestSeenIndex;
     
-                if (newPlaceValue !== placeValue) setPlaceValue(newPlaceValue);
+                if (newPlaceValue !== placeValue) setPlaceValue(_ => newPlaceValue);
             }
         };
         const touchMove = (event: TouchEvent) => move([event, 'touch']);
         const mouseMove = (event: MouseEvent) => move([event, 'mouse']);
 
         const end = (event: TouchEvent | MouseEvent) => {
-            dragInProgress.current = false;
-            event.stopPropagation();
-            event.preventDefault();
+            if (dragInProgress.current) {
+                dragInProgress.current = false;
+                event.stopPropagation();
+                event.preventDefault();
+            }
         };
 
 

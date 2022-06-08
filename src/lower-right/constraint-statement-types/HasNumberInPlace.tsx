@@ -40,11 +40,14 @@ export default function HasNumberInPlace( { className, constraint, dispatch, ind
         }
     };
 
-    const onPlaceChangeClosure = (value: number) => {
+    const onPlaceChangeClosure = (update: number | ((old: number) => number)) => {
+        if (update instanceof Function) {
+            update = update(place);
+        }
         dispatch({
             _tag: ActionTypeTag.UPDATE_CONSTRAINT,
             index: index,
-            constraint: { cType, num, place: value },
+            constraint: { cType, num, place: update },
         });
     };
 

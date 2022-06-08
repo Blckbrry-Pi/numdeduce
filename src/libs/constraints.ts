@@ -4,7 +4,7 @@ export enum ConstraintType {
     CANT_BE_NUMBER,
     CANT_BE_NUMBERS_IN_PLACE,
     N_OF_NUMS_LIST_IN_NUMBER,
-   N_OF_NUMS_LIST_IN_PLACES,
+    N_OF_NUMS_LIST_IN_PLACES,
 }
 
 export type HNConstraint = {
