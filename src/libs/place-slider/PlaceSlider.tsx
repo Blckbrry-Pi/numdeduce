@@ -79,7 +79,10 @@ const PlaceSlider: React.FC<Props> = ({
                 
                 const newPlaceValue = 10 ** lowestSeenIndex;
     
-                if (newPlaceValue !== placeValue) setPlaceValue(_ => newPlaceValue);
+                if (newPlaceValue !== placeValue) {
+                    setPlaceValue(_ => newPlaceValue);
+                    navigator.vibrate([1]);
+                }
             }
         };
         const touchMove = (event: TouchEvent) => move([event, 'touch']);
