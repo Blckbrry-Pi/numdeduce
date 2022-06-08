@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/numdeduce/static/css/main.89073c8b.css",
-    "main.js": "/numdeduce/static/js/main.c9797dec.js",
+    "main.js": "/numdeduce/static/js/main.c4a92097.js",
     "static/media/trashIcon.svg": "/numdeduce/static/media/trashIcon.d929743abedff357d10a43641c4a57c2.svg",
     "index.html": "/numdeduce/index.html",
     "static/media/plusIcon.svg": "/numdeduce/static/media/plusIcon.35cbf0277039db19b4bde67bf872cb86.svg",
     "main.89073c8b.css.map": "/numdeduce/static/css/main.89073c8b.css.map",
-    "main.c9797dec.js.map": "/numdeduce/static/js/main.c9797dec.js.map"
+    "main.c4a92097.js.map": "/numdeduce/static/js/main.c4a92097.js.map"
   },
   "entrypoints": [
     "static/css/main.89073c8b.css",
-    "static/js/main.c9797dec.js"
+    "static/js/main.c4a92097.js"
   ]
 }
